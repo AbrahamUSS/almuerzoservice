@@ -4,7 +4,6 @@ import com.sandovalpurisaca.almuerzoservice.security.JwtAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.Customizer;
@@ -50,8 +49,14 @@ public class SecurityConfig {
                 .cors(Customizer.withDefaults())
                 .sessionManagement(sesion -> sesion.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(reglas -> reglas
-                        .requestMatchers(HttpMethod.POST, "/auth/register", "/auth/login").permitAll()
-                        .requestMatchers("/actuator/health", "/actuator/info").permitAll()
+                        .requestMatchers(
+                                "/auth/register", "/auth/login",
+                                "/api/auth/register", "/api/auth/login"
+                        ).permitAll()
+                        .requestMatchers(
+                                "/actuator/health", "/actuator/info",
+                                "/api/actuator/health", "/api/actuator/info"
+                        ).permitAll()
                         .anyRequest().authenticated())
                 .exceptionHandling(excepciones -> excepciones
                         .authenticationEntryPoint(authenticationEntryPoint))
