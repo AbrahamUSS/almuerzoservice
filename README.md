@@ -119,6 +119,9 @@ los pedidos del primero.
 
 El `Dockerfile` compila con el Gradle Wrapper y corre el JAR con JRE 21.
 
+**URL pública asignada en esta entrega:**
+https://almuerzoservice-valx.onrender.com (prefijo de la API: `/api`).
+
 ### 1. Crear la base de datos (Render Postgres)
 
 Render ofrece PostgreSQL administrado (no MySQL). En el Dashboard:
@@ -164,14 +167,14 @@ python -c "import secrets; print(secrets.token_urlsafe(48))"
 ### 3. Probar
 
 ```powershell
-Invoke-RestMethod 'https://TU-SERVICIO.onrender.com/api/actuator/health'
+Invoke-RestMethod 'https://almuerzoservice-valx.onrender.com/api/actuator/health'
 ```
 
-Luego en Postman cambia la variable `baseUrl` a `https://TU-SERVICIO.onrender.com/api`
+Luego en Postman cambia la variable `baseUrl` a `https://almuerzoservice-valx.onrender.com/api`
 y ejecuta la colección. En la app Flutter:
 
 ```powershell
-flutter build apk --release --dart-define=API_BASE_URL=https://TU-SERVICIO.onrender.com/api
+flutter build apk --release --dart-define=API_BASE_URL=https://almuerzoservice-valx.onrender.com/api
 ```
 
 > El plan Free duerme el Web Service tras 15 min sin tráfico: la primera petición
